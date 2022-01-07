@@ -1,0 +1,24 @@
+; Disassembly of "mgb.gb"
+; This file was created with:
+; mgbdis v1.5 - Game Boy ROM disassembler by Matt Currie and contributors.
+; https://github.com/mattcurrie/mgbdis
+
+ld_long: MACRO
+    IF STRLWR("\1") == "a"
+        ; ld a, [$ff40]
+        db $FA
+        dw \2
+    ELSE
+        IF STRLWR("\2") == "a"
+            ; ld [$ff40], a
+            db $EA
+            dw \1
+        ENDC
+    ENDC
+ENDM
+
+INCLUDE "hardware.inc"
+INCLUDE "bank_000.asm"
+INCLUDE "bank_001.asm"
+INCLUDE "bank_002.asm"
+INCLUDE "bank_003.asm"
